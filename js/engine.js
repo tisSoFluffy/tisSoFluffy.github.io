@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -93,6 +93,10 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+            if(enemy.x > 500){
+                killEnemy(enemy);
+                allEnemies.push(new Enemy());
+            }
         });
         player.update();
     }
@@ -103,6 +107,48 @@ var Engine = (function(global) {
      * they are flipbooks creating the illusion of animation but in reality
      * they are just drawing the entire screen over and over.
      */
+
+    function isCollision(obj){
+        var dx = player.x - obj.x;
+        var dy = player.y - obj.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < player.radius + obj.radius) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkCollisions(){
+        for(enemy in allEnemies){
+            if(isCollision(allEnemies[enemy])){
+                killEnemy(allEnemies[enemy]);
+                player.x = 303;
+                player.y = 404;
+                allEnemies.push(new Enemy());
+                //if(player.life === 1){
+                //    reset();
+                //} else{
+                //    -- player.life;
+                //    killEnemy();
+                //}
+                console.log('Collision Detected!');
+            }
+        }
+        for(item in allItems){
+            if(isCollision(allItems[item])){
+                console.log('Collision Detected!');
+                if (allItems[item] instanceof Key){
+                    Player.hasKey = true;
+                    allItems.splice(allItems.indexOf(item), 1);
+                }
+            }
+        }
+    }
+
+    function killEnemy(enemy){
+        allEnemies.splice(allEnemies.indexOf(enemy), 1);
+    }
     function render() {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
@@ -152,6 +198,10 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        allItems.forEach(function(item){
+            item.render();
+        });
+
         player.render();
     }
 
@@ -172,7 +222,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Key.png'
     ]);
     Resources.onReady(init);
 
