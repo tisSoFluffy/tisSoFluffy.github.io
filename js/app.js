@@ -25,19 +25,25 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
 };
-Enemy.prototype.setSpeed = function(){
-    var speed = [ 50, 100, 150];
+Enemy.prototype.setSpeed = function(score){
+    var difficulty, speed, difficulties;
+
+    speed = [ 50, 100, 150];
+
     return speed[Math.round(2 * Math.random())];
 }
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
+var Heart = function(){
+    this.sprite = 'images/Heart.png';
+}
 var Key = function(){
     this.sprite = 'images/Key.png';
     this.generateRandomSpawnPoint();
     this.radius = 20;
+    this.points = 50;
 }
 
 Key.prototype.generateRandomSpawnPoint = function(){
@@ -54,13 +60,20 @@ Key.prototype.render = function(){
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+
+Heart.prototype.render = function(x, y){
+    ctx.drawImage(Resources.get(this.sprite),x, y);
+}
 var Player = function() {
+    heart_1 = new Heart();
+    heart_2 = new Heart()
     this.x = 303;
     this.y = 404;
     this.radius = 40;
     this.sprite = 'images/char-boy.png'
     this.hasKey = false;
     this.life = 2;
+    this.score = 0;
 }
 
 Player.prototype.handleInput = function(key){
@@ -95,6 +108,14 @@ Player.prototype.handleInput = function(key){
 
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.font = "32px Impact";
+    ctx.fillText('Score: ' + this.score.toString(), 300, 100);
+    if(player.life > 0){
+        heart_2.render(0, 0);
+        if(player.life > 1){
+            heart_2.render(101, 0);
+        }
+    }
 }
 
 Player.prototype.update = function(dt){
@@ -104,7 +125,7 @@ Player.prototype.update = function(dt){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies, allItems, player, enemy, key;
+var allEnemies, allItems, player, enemy, key, heart_1, heart_2;
 
 // Instantiate arrays
 allEnemies = [];

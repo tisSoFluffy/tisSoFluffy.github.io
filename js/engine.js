@@ -81,6 +81,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
+        ctx.beginPath();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -98,6 +99,7 @@ var Engine = (function(global) {
                 allEnemies.push(new Enemy());
             }
         });
+
         player.update();
     }
 
@@ -123,15 +125,17 @@ var Engine = (function(global) {
         for(enemy in allEnemies){
             if(isCollision(allEnemies[enemy])){
                 killEnemy(allEnemies[enemy]);
+                -- player.life;
                 player.x = 303;
                 player.y = 404;
                 allEnemies.push(new Enemy());
-                //if(player.life === 1){
-                //    reset();
+                if(player.life < 0){
+                    reset();
                 //} else{
                 //    -- player.life;
                 //    killEnemy();
-                //}
+                //
+                }
                 console.log('Collision Detected!');
             }
         }
@@ -139,8 +143,13 @@ var Engine = (function(global) {
             if(isCollision(allItems[item])){
                 console.log('Collision Detected!');
                 if (allItems[item] instanceof Key){
-                    Player.hasKey = true;
+                    player.hasKey = true;
+                    player.score += allItems[item].points;
+                    if(player.score > 500){
+                        allEnemies.push(new Enemy());
+                    }
                     allItems.splice(allItems.indexOf(item), 1);
+                    allItems.push(new Key());
                 }
             }
         }
@@ -211,6 +220,15 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        player = new Player();
+        for(var i = 0; i < allEnemies.length; i ++){
+
+            allEnemies.splice(allEnemies[i]);
+        }
+
+        allEnemies.push(new Enemy());
+        allEnemies.push(new Enemy());
+        allEnemies.push(new Enemy());
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -223,7 +241,8 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/Key.png'
+        'images/Key.png',
+        'images/Heart.png'
     ]);
     Resources.onReady(init);
 
