@@ -106,6 +106,16 @@ Player.prototype.handleInput = function(key){
                 break;
         case 'e':
             player.setState('princess');
+            break;
+        case 'r':
+            player.setState('horn');
+            break;
+        case 'q':
+            player.setState('pink');
+            break;
+        case 'w':
+            player.setState('boy');
+            break;
     }
 }
 
@@ -145,6 +155,8 @@ Player.prototype.render = function(){
     ctx.fillText('Score: ' + this.score.toString(), 300, 100);
     ctx.fillText('Character: ' + this.curChar, 0, 575);
     ctx.fillText('Keys: ', 300, 575);
+    ctx.font = "20px Comic Sans";
+    ctx.fillText('change with: q, w, e, r', 0, 540);
     for(var i = 0; i < this.keyChain; i++){
         ctx.drawImage(Resources.get(key.sprite), 0,0, 101, 171,(375 + keyOffset),530, 30.3, 51.3);
         keyOffset += 25;
@@ -187,7 +199,8 @@ document.addEventListener('keyup', function(e) {
         40: 'down',
         69: 'e',
         81: 'q',
-        82: 'r'
+        82: 'r',
+        87: 'w'
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
