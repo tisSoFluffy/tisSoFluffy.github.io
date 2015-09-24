@@ -70,8 +70,8 @@ var Player = function() {
     this.x = 303;
     this.y = 404;
     this.radius = 40;
-    this.sprite = 'images/char-boy.png'
-    this.hasKey = false;
+    this.setState('ran');
+    this.keyChain = 0;
     this.life = 2;
     this.score = 0;
 }
@@ -89,10 +89,12 @@ Player.prototype.handleInput = function(key){
             }
             break;
         case 'up':
-            //if(player.y === 0 && player.hasKey){
-            //    player.y -= 83;
-            //    break;
-            //}
+            if(player.y === 72 && player.keyChain > 0){
+                player.score += 50;
+                player.keyChain -= 1;
+                player.setPosition();
+                break;
+            }
             if(player.y > 72){
                 player.y -= 83;
             }
@@ -102,14 +104,51 @@ Player.prototype.handleInput = function(key){
                 player.y += 83;
             }
                 break;
-
+        case 'e':
+            player.setState('princess');
     }
 }
 
+Player.prototype.setPosition = function(){
+    this.x = 303;
+    this.y = 404;
+}
+
+Player.prototype.setState = function(state){
+    var selected;
+    var c;
+    var players = {
+        'char': {
+            'boy': 'images/char-boy.png',
+            'cat': 'images/char-cat-girl.png',
+            'horn': 'images/char-horn-girl.png',
+            'pink': 'images/char-pink-girl.png',
+            'princess': 'images/char-princess-girl.png'
+        }
+    }
+    var keys = Object.keys(players.char);
+    if(state === 'ran') {
+        c = keys[Math.round(4 * Math.random())]
+        selected = players.char[c];
+    } else {
+        selected = players.char[state];
+        c = state;
+    }
+    this.sprite = selected;
+    this.curChar = c;
+}
+
 Player.prototype.render = function(){
+    var keyOffset = 0;
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     ctx.font = "32px Impact";
     ctx.fillText('Score: ' + this.score.toString(), 300, 100);
+    ctx.fillText('Character: ' + this.curChar, 0, 575);
+    ctx.fillText('Keys: ', 300, 575);
+    for(var i = 0; i < this.keyChain; i++){
+        ctx.drawImage(Resources.get(key.sprite), 0,0, 101, 171,(375 + keyOffset),530, 30.3, 51.3);
+        keyOffset += 25;
+    }
     if(player.life > 0){
         heart_2.render(0, 0);
         if(player.life > 1){
@@ -145,7 +184,10 @@ document.addEventListener('keyup', function(e) {
         37: 'left',
         38: 'up',
         39: 'right',
-        40: 'down'
+        40: 'down',
+        69: 'e',
+        81: 'q',
+        82: 'r'
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
