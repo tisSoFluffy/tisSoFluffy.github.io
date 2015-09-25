@@ -1,0 +1,75 @@
+[P] o  o  S  o  o [P]
+ c  v  o  h  o  o  o
+ o  o  o  o  v  o  o
+ o  o  v  h  o  v  o
+ o  o  s  o  o  o  v
+ o  v  o  l  o  o  o
+[P] o  o  o  o  v  o
+ o  v  o  l  o  o  o
+          c [P] o  o
+
+Q1: 5 Q2: 8,10 Q3: 2-12, Q4: 6,4
+Game Items
+----------
+
+[P]- Diseases
+--------------
+[B] - Bird Flu(H1N1)
+[I] - Influenza
+[M] - Malaria
+[H] - Histeria
+If disease spreads to person, put a \ through the person. That person is now infected.
+If a person is left on infected tile and another turn ends, put a / through that person. That person dies.
+
+
+Items
+------
+l - lightening - can strike a tile preventing disease to spread to this tile. Will kill anyone on this tile.
+h - healthpack -
+s - spring - jump to any tile
+c - cure - cure an infected person or yourself (You don't want to die either!)
+
+
+v - person
+----------
+N - Nurse - Able to cure infected person.
+E - Engineer - Gain an extra move each turn
+S - Scientist - Able to predict dice roll.(You can pick dice roll instead of rolling). (Max Use:3 times)
+G - Government Planner - Able to convence infected persons to walk instead of being carried. Can move with multiple infected persons.
+
+Drop off Point / Starting Area
+-------------------------------
+[S] - Quarantine Zone
+
+Player Actions
+--------------
+move 1 tile
+pickup item or person
+drop off person at Quarantine Zone (one person per action point)
+
+Game Setup
+---------
+1. Replace each [P] tile with one disease.
+2. Pick one person in each quadrant. Assign each of those persons 1 role (N,E,S or G)
+
+Game Play
+--------
+1. Each turn you have 4 actions.
+2. At end of turn, roll dice. Follow Dice Roll Rules
+3. Disease Phase
+
+Goal
+-----
+The goal is to save as many people from diing as posible.
+
+Beginner Starter Board
+----
+[B] o  o  S  o  o [I]
+ c  vN o  h  o  o  o
+ o  o  o  o  v  o  o
+ o  o  v  h  o  v  o
+ o  o  s  o  o  o  vS
+ o  v  o  l  o  o  o
+[H] o  o  o  o  v  o
+ o  vG o  l  o  o  o
+          c [M] o  o

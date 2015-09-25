@@ -14,7 +14,9 @@
  * a little simpler to work with.
  */
 
+
 var Engine = (function(global) {
+    "use strict";
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
@@ -101,7 +103,7 @@ var Engine = (function(global) {
         });
 
         player.update();
-    };
+    }
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -122,7 +124,7 @@ var Engine = (function(global) {
     }
 
     function checkCollisions(){
-        for(enemy in allEnemies){
+        for(var enemy in allEnemies){
             if(isCollision(allEnemies[enemy])){
                 killEnemy(allEnemies[enemy]);
                 -- player.life;
@@ -138,7 +140,7 @@ var Engine = (function(global) {
                 console.log('Collision Detected!');
             }
         }
-        for(item in allItems){
+        for(var item in allItems){
             if(isCollision(allItems[item])){
                 console.log('Collision Detected!');
                 if (allItems[item] instanceof Key){
