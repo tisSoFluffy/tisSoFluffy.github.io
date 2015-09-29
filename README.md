@@ -2,9 +2,9 @@ Bugger
 ===============================
 How to Play
 ===========
-Move with arrow keys ↑ ↓ ← →
-Collect Key
-Jump into river
+Move with arrow keys ↑ ↓ ← → <p>
+Collect Keys <p>
+Jump into river <p>
 Go quick before the buggers overrun!
 
 Goal
