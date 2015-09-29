@@ -83,29 +83,29 @@ var Player = function () {
 Player.prototype.handleInput = function (key) {
     switch (key) {
         case 'left':
-            if (player.x > 0) {
-                player.x -= 101;
+            if (this.x > 0) {
+                this.x -= 101;
             }
             break;
         case 'right':
-            if (player.x < 404) {
-                player.x += 101;
+            if (this.x < 404) {
+                this.x += 101;
             }
             break;
         case 'up':
-            if (player.y === 72 && player.keyChain > 0) {
-                player.score += 50;
-                player.keyChain -= 1;
-                player.setPosition();
+            if (this.y === 72 && this.keyChain > 0) {
+                this.score += 50;
+                this.keyChain -= 1;
+                this.setPosition();
                 break;
             }
-            if (player.y > 72) {
-                player.y -= 83;
+            if (this.y > 72) {
+                this.y -= 83;
             }
             break;
         case 'down':
-            if (player.y < 404) {
-                player.y += 83;
+            if (this.y < 404) {
+                this.y += 83;
             }
             break;
         case 'e':
@@ -165,9 +165,9 @@ Player.prototype.render = function () {
         ctx.drawImage(Resources.get(key.sprite), 0, 0, 101, 171, (375 + keyOffset), 530, 30.3, 51.3);
         keyOffset += 25;
     }
-    if (player.life > 0) {
+    if (this.life > 0) {
         heart_2.render(0, 0);
-        if (player.life > 1) {
+        if (this.life > 1) {
             heart_2.render(101, 0);
         }
     }
