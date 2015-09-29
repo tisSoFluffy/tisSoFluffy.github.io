@@ -1,4 +1,3 @@
-var app = function() {
 // Enemies our player must avoid
 
     var Enemy = function () {
@@ -215,5 +214,3 @@ var app = function() {
 
         player.handleInput(allowedKeys[e.keyCode]);
     });
-};
-app();
