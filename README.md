@@ -1,5 +1,11 @@
 Bugger
 ===============================
+How to Play
+===========
+Move with arrow keys ↑ ↓ ← →
+Collect Key
+Jump into river
+Go quick before the buggers overrun!
 
 Goal
 ===========
