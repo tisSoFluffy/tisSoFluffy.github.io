@@ -1,5 +1,9 @@
 Bugger
 ===============================
+How to start game
+=================
+Launch index.html in your favorite web browser.
+
 How to Play
 ===========
 Move with arrow keys ↑ ↓ ← → <p>

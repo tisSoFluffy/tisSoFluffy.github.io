@@ -80,6 +80,7 @@ var Player = function () {
     this.score = 0;
 };
 
+//Handles user keyboard input
 Player.prototype.handleInput = function (key) {
     switch (key) {
         case 'left':
@@ -123,11 +124,14 @@ Player.prototype.handleInput = function (key) {
     }
 };
 
+//Player's Start position.
+//This is used when game is setup, when enemy collision occurs, and when reset happens
 Player.prototype.setPosition = function () {
     this.x = 303;
     this.y = 404;
 };
 
+//Player character change function.
 Player.prototype.setState = function (state) {
     var selected;
     var c;
@@ -177,6 +181,8 @@ Player.prototype.update = function (dt) {
 
 };
 
+
+
 function createEnemies() {
     for (var i = 0; i < 3; i++) {
         allEnemies.push(new Enemy());
@@ -192,9 +198,10 @@ var allEnemies, allItems, player, enemy, key, heart_1, heart_2;
 allEnemies = [];
 allItems = [];
 
+//Create new game objects
 createEnemies();
 
-allItems.push(key = new Key());
+allItems.push(new Key());
 
 player = new Player();
 
