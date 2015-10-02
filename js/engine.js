@@ -144,6 +144,8 @@ var Engine = (function(global) {
         for(var item in allItems){
             if(isCollision(allItems[item])){
                 console.log('Collision Detected!');
+                //Collect keys on collision. Keys are necessary to jump in river
+                //Create new key in random location
                 if (allItems[item] instanceof Key){
                     player.keyChain += 1;
                     player.score += allItems[item].points;
@@ -220,6 +222,7 @@ var Engine = (function(global) {
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
+    //Reset game to default
     function reset() {
         // noop
         player = new Player();
