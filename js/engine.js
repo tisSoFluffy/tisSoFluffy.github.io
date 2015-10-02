@@ -228,12 +228,10 @@ var Engine = (function(global) {
         player = new Player();
         for(var i = 0; i < allEnemies.length; i ++){
 
-            allEnemies.splice(allEnemies[i]);
+            allEnemies = [];
         }
 
-        allEnemies.push(new Enemy());
-        allEnemies.push(new Enemy());
-        allEnemies.push(new Enemy());
+        createEnemies();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
