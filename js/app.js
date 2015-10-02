@@ -201,7 +201,7 @@ allItems = [];
 //Create new game objects
 createEnemies();
 
-allItems.push(new Key());
+allItems.push(key = new Key());
 
 player = new Player();
 
