@@ -130,14 +130,15 @@ var Engine = (function(global) {
             //If enemy Collision, subtract life and move player to starting position
             //destroy enemy and create new enemy
             if(isCollision(allEnemies[enemy])){
+                 //If player has no life, reset game.
+                if(player.life =< 0){
+                    reset();
+                }
                 killEnemy(allEnemies[enemy]);
                 -- player.life;
                 player.setPosition();
                 allEnemies.push(new Enemy());
-                //If player has no life, reset game.
-                if(player.life < 0){
-                    reset();
-                }
+               
                 console.log('Collision Detected!');
             }
         }
