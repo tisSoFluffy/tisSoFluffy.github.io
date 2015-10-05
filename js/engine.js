@@ -226,10 +226,8 @@ var Engine = (function(global) {
     function reset() {
         // noop
         player = new Player();
-        for(var i = 0; i < allEnemies.length; i ++){
+        allEnemies = [];
 
-            allEnemies = [];
-        }
 
         createEnemies();
     }
