@@ -132,6 +132,7 @@ var Engine = (function(global) {
             if(isCollision(allEnemies[enemy])) {
                 //If player has no life, reset game
                 if (player.life < 1) {
+                    player.setPosition();
                     reset();
                 } else {
                     killEnemy(allEnemies[enemy]);
