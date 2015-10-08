@@ -131,7 +131,7 @@ var Engine = (function(global) {
             //destroy enemy and create new enemy
             if(isCollision(allEnemies[enemy])) {
                 //If player has no life, reset game
-                if (player.life <= 0) {
+                if (player.life < 1) {
                     reset();
                 } else {
                     killEnemy(allEnemies[enemy]);
