@@ -129,17 +129,16 @@ var Engine = (function(global) {
         for(var enemy in allEnemies){
             //If enemy Collision, subtract life and move player to starting position
             //destroy enemy and create new enemy
-            if(isCollision(allEnemies[enemy])){
-                 //If player has no life, reset game.
-                if(player.life =< 0){
+            if(isCollision(allEnemies[enemy])) {
+                //If player has no life, reset game
+                if (player.life <= 0) {
                     reset();
+                } else {
+                    killEnemy(allEnemies[enemy]);
+                    --player.life;
+                    player.setPosition();
+                    allEnemies.push(new Enemy());
                 }
-                killEnemy(allEnemies[enemy]);
-                -- player.life;
-                player.setPosition();
-                allEnemies.push(new Enemy());
-               
-                console.log('Collision Detected!');
             }
         }
         for(var item in allItems){
@@ -226,11 +225,11 @@ var Engine = (function(global) {
     //Reset game to default
     function reset() {
         // noop
-        player = new Player();
+
         allEnemies = [];
-
-
+        player = new Player();
         createEnemies();
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
